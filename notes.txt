@@ -1,0 +1,580 @@
+========================================
+Object Oriented Programming - Notes
+========================================
+
+
+
+Barrack - 
+Soldiers - 
+Farm - 
+Temple - 
+
+Barrack
+---------------------
+What can each of these have? 
+ - x, y coordinate
+ - health
+
+What can each of these do?
+ - create soliders
+ - move 
+ - destroy
+
+
+Farm
+---------------------
+What can each of these have? 
+ - x, y coordinate
+ - health
+ - capacity
+
+What can each of these do?
+ - create soliders
+ - move 
+ - destroy
+
+
+ Class is a blueprint of what I want to do. 
+ - Each class has two categories: 
+ - Attributes: what it can have
+ - Methods: what it can do
+
+Each class has Objects, also called instances.
+
+Instance/Objects 
+- each of these will have their own attributes and methods
+- instance attributes and instance methods
+
+What if there are some attributes or methods that you don't want the instances to have?
+- make the attributes and methods private 
+- public are available within the class 
+
+
+Constructor
+Method that the program will run when you construct a new instance.
+If we name a class "Barrack" and a method "Barrack."
+Find out how to create a constructor.
+Some languages have destructor.  Methods run when object is detroyed.
+
+
+Barrack A
+- Inheritance: inherit all the attributes and methods that the parent class has
+- create a new class "A" and have everything that the Barrack can have and everything it can do.
+- can specifiy additional attributes and additional methods in my child class
+
+Now lets create objects off of Barrack A
+- anything private inside the class does not get inherited
+- there is another situation where we can do protected where we can do all the different instances but will allow your children class to inherit them.
+
+
+
+Objects and Classes
+- Class is like a blueprint for a house
+- object is like the actual house
+- classes form the structure of data and actions and use that information to build objects.
+
+Class Structure
+
+Instantiation
+
+Properties
+
+Methods
+
+Construct
+
+
+
+========================================
+Properties
+========================================
+
+class MyFirstClass
+{
+	public $property1 = "I am the first property!";
+}
+
+$obj = new MyFirstClass();
+
+
+var_dump($obj);
+
+
+object(MyFirstClass)#1 (1) { ["property1"]=> string(24) "I am the first property!" }
+
+
+---------------------------------------------------------------------
+
+class MyFirstClass
+{
+	public $property1 = "I am the first property!";
+}
+
+$obj = new MyFirstClass();
+
+echo $obj->property1;  // call the property 
+I am the first property!
+
+
+---------------------------------------------------------------------
+
+class MyFirstClass
+{
+	public $my_property = "this is my property";
+}
+
+$obj = new MyFirstClass();
+
+echo $obj->my_property.'<br>';
+
+//this is my property
+
+---------------------------------------------------------------------
+
+
+class MyFirstClass
+{
+	public $my_property = "this is my property";
+}
+
+$obj = new MyFirstClass();
+
+var_dump($obj);
+
+object(MyFirstClass)#1 (1) { ["my_property"]=> string(19) "this is my property" }
+
+---------------------------------------------------------------------
+
+class MyFirstClass
+{
+	public $my_property = "this is my property";
+}
+
+$obj = new MyFirstClass();
+
+echo $obj->my_property.'<br>';
+echo $obj->my_property = 'changed the value of my property'.'<br>';
+echo $obj->my_property;
+echo $obj->my_property.'<br>';
+
+$obj2 = new MyFirstClass();
+echo $obj2->my_property;
+
+// this is my property
+// changed the value of my property
+// changed the value of my property
+// changed the value of my property
+
+// this is my property
+
+---------------------------------------------------------------------
+
+
+
+
+
+
+EX #1
+
+class MyFirstClass 
+{
+
+	public $my_property = "I'm a class property!";
+}
+
+$obj1 = new MyFirstClass();
+$obj2 = new MyFirstClass();
+$obj3 = new MyFirstClass();
+$obj4 = new MyFirstClass();
+
+var_dump($obj1);
+var_dump($obj2);
+var_dump($obj3);
+var_dump($obj4);
+
+object(MyFirstClass)#1 (1) { ["my_property"]=> string(21) "I'm a class property!" } object(MyFirstClass)#2 (1) { ["my_property"]=> string(21) "I'm a class property!" } object(MyFirstClass)#3 (1) { ["my_property"]=> string(21) "I'm a class property!" } object(MyFirstClass)#4 (1) { ["my_property"]=> string(21) "I'm a class property!" }
+
+---------------------------------------------------------------------
+
+EX #2
+
+class MyFirstClass 
+{
+
+	public $my_property = "I'm a class property!";
+}
+
+$obj = new MyFirstClass();
+echo $obj->my_property.'<br>';
+$obj->my_property = 'changed the value of my property';
+echo $obj->my_property.'<br>';
+echo $obj->my_property.'<br>';
+// I'm a class property!
+// changed the value of my property
+// changed the value of my property
+
+
+========================================
+Methods
+========================================
+
+class MyFirstClass
+{
+	public $property1 = "I am the first property!";
+	public function set_property1 ($property1) 
+	{
+		$this->property1 = $property1;
+	}
+
+	public function get_property1 ()
+	{
+		return $this->property1;
+	}
+}
+
+$obj = new MyFirstClass();
+echo $obj->get_property1();
+$obj->set_property1('new value for property1');
+echo $obj->get_property1();
+
+//I am the first property!new value for property1
+
+---------------------------------------------------------------------
+
+class MyFirstClass {
+	public $property1 = "I am the first property!";
+
+	public function set_property1($property1)
+	{
+		$this->property1 = $property1;
+	}
+
+	public function get_property1()
+	{
+		return $this->property1;
+	}
+}
+
+$obj1 = new MyFirstClass();
+$obj2 = new MyFirstClass();
+echo $obj1->get_property1();
+echo $obj2->get_property1();
+$obj1->set_property1('new value for property1 for the first instance');
+$obj2->set_property1('new value for property1 for the seond instance');
+echo $obj1->get_property1();
+echo $obj2->get_property1();
+
+// I am the first property!I am the first property!new value for property1 for the first instancenew value for property1 for the seond instance
+
+---------------------------------------------------------------------
+
+
+
+EX #1
+class MyFirstClass 
+{
+	public $my_property = 'default value';
+
+	public function get_my_property()
+	{
+		return $this->my_property;
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;
+	}
+
+}
+
+$obj = new MyFirstClass();
+echo $obj->get_my_property().'<br>';
+$obj->set_my_property('obj 1 property value');
+echo $obj->get_my_property().'<br>';
+
+$obj2 = new MyFirstClass();
+echo $obj2->get_my_property().'<br>';
+echo $obj2->get_my_property().'<br>';
+
+default value
+obj 1 property value
+default value
+default value
+
+
+---------------------------------------------------------------------
+
+
+EX #2
+
+class MyFirstClass 
+{
+	public $my_property = 'default value';
+
+	public function get_my_property()
+	{
+		return $this->my_property;
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;
+	}
+
+	public function print_hello()
+	{
+		return 'Hello';
+	}
+}
+
+$obj = new MyFirstClass();
+echo $obj->get_my_property().'<br>';
+$obj->set_my_property('obj 1 property value');
+echo $obj->get_my_property().'<br>';
+
+$obj2 = new MyFirstClass();
+echo $obj2->get_my_property().'<br>';
+$obj2->set_my_property('obj 2 property value');
+echo $obj2->get_my_property().'<br>';
+
+// default value
+// obj 1 property value
+// default value
+// obj 2 property value
+
+
+---------------------------------------------------------------------
+
+
+
+EX #3
+
+class MyFirstClass 
+{
+	public $my_property = 'default value';
+
+	public function get_my_property()
+	{
+		return $this->my_property;
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;
+	}
+
+	public function print_hello()
+	{
+		return 'Hello';
+	}
+}
+
+$obj = new MyFirstClass();
+echo $obj->get_my_property().'<br>';
+$obj->set_my_property('obj 1 property value');
+echo $obj->get_my_property().'<br>';
+
+$obj2 = new MyFirstClass();
+echo $obj2->get_my_property().'<br>';
+$obj2->set_my_property('obj 2 property value');
+echo $obj2->get_my_property().'<br>';
+
+// Hello default value
+// Hello obj 1 property value
+// Hello default value
+// Hello obj 2 property value
+
+-------------------------------------------------
+
+class MyFirstClass {
+	public $my_property = 'default value';
+
+	public function get_my_property()
+	{
+		return $this->print_hello(). ' '. $this->my_property;
+		// will allow to print "Hello_&_default value"
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;  // setting $my_property = $value
+	}
+
+	public function print_hello()
+	{
+		return 'Hello';
+	}
+}
+
+// $obj = new MyFirstClass();
+// echo $obj->get_my_property();
+// // return 'default value'
+
+// $obj->set_my_property('obj1 property value');
+// echo $obj->get_my_property();
+
+
+$obj2 = new MyFirstClass();
+echo $obj2->get_my_property();
+$obj2->set_my_property('obj2 property value');
+echo $obj2->get_my_property();
+// return 'default value'
+// return obj2 property value
+
+
+
+
+========================================
+Construct
+========================================
+
+
+class MyFirstClass {
+	public $my_property = 'default value';
+
+	public function __construct()
+	{
+		echo "I get called for each instance of this class!";
+	}
+
+	public function get_my_property()
+	{
+		return $this->print_hello(). ' '. $this->my_property;
+		// will allow to print "Hello_&_default value"
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;  // setting $my_property = $value
+	}
+
+	public function print_hello()
+	{
+		return 'Hello';
+	}
+}
+
+$obj = new MyFirstClass();
+echo $obj->get_my_property();
+// prints: cI get called for each instance of this class!Hello default value
+
+$obj1->set_property1('New value for property first instance');
+$obj1->set_property1('New value for property first instance');
+
+
+-------------------------------------------------------------------------
+
+class MyFirstClass {
+	public $my_property = 'default value';
+
+	public function __construct()
+	{
+		echo "I get called for each instance of this class!";
+	}
+
+	public function get_my_property()
+	{
+		return $this->print_hello(). ' '. $this->my_property;
+		// will allow to print "Hello_&_default value"
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;  // setting $my_property = $value
+	}
+
+	public function print_hello()
+	{
+		return 'Hello';
+	}
+}
+
+$obj1 = new MyFirstClass();  // this prints echo __construct function
+$obj2 = new MyFirstClass();
+echo $obj1->get_my_property().'<br>';
+echo $obj2->get_my_property().'<br>';
+//I get called for each instance of this class! I get called for each instance of this class!Hello default value
+
+
+-------------------------------------------------------------------------
+
+<?php
+
+class MyFirstClass {
+	public $my_property = 'default value';
+
+	public function __construct()
+	{
+		echo "I get called for each instance of this class!";
+	}
+
+	public function get_my_property()
+	{
+		return $this->print_hello(). ' '. $this->my_property;
+		// will allow to print "Hello_&_default value"
+	}
+
+	public function set_my_property($value)
+	{
+		$this->my_property = $value;  // setting $my_property = $value
+	}
+
+	public function print_hello()
+	{
+		return 'Hello';
+	}
+}
+
+$obj1 = new MyFirstClass();  // this prints echo __construct function
+$obj2 = new MyFirstClass();
+echo $obj1->get_my_property().'<br>';
+echo $obj2->get_my_property().'<br>';
+$obj1->set_my_property('New value for property first instance');
+$obj2->set_my_property('New value for property second instance');
+echo $obj1->get_my_property().'<br>';
+echo $obj2->get_my_property().'<br>';
+
+// I get called for each instance of this class!I get called for each instance of this class!Hello default value
+// Hello default value
+// Hello New value for property first instance
+
+-------------------------------------------------------------------------
+
+
+
+class Person
+{
+	public $first_name;
+	public $last_name;
+
+	public function __construct($first_name_p, $last_name_p)
+	{
+		$this->first_name = $first_name_p;
+		$this->last_name = $last_name_p;
+	}
+}
+
+$new_person1 = new Person('John', 'Doe');
+var_dump($new_person1);
+
+$new_person2 = new Person('Jerry', 'McGuire');
+var_dump($new_person2
+
+class Person
+{
+	public $first_name;
+	public $last_name;
+
+	public function __construct($first_name_p, $last_name_p)
+	{
+		$this->first_name = $first_name_p;
+		$this->last_name = $last_name_p;
+	}
+}
+
+$new_person1 = new Person('John', 'Doe');
+var_dump($new_person1);
+
+$new_person2 = new Person('Jerry', 'McGuire');
+var_dump($new_person2);
+
