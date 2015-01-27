@@ -14,19 +14,22 @@ class Bike
 
 	function displayInfo()
 	{
-		return $this->price.' '.$this->max_speed.' '.$this->miles.' total miles';
+		echo $this->price.' '.$this->max_speed.' '.$this->miles.' total miles <br><br>';
+		return $this;
 	}
 
 	function drive()
 	{
 		$this->miles = $this->miles+10;
-		return "Driving ".$this->miles ." total miles";
+		echo "Driving ".$this->miles ." total miles <br>";
+		return $this;
 	}
 
 	function reverse()
 	{
 		$this->miles = $this->miles-10;
-		return "Reverse ".$this->miles ." total miles";
+		echo "Reverse ".$this->miles ." total miles <br>";
+		return $this;
 	}
 
 }
@@ -35,25 +38,12 @@ $bike1 = new Bike('200','25mph');
 $bike2 = new Bike('500','20mph');
 $bike3 = new Bike('100','15mph');
 
-// echo $bike1->displayInfo().'<br>';
-// echo $bike2->displayInfo().'<br>';
-// echo $bike3->displayInfo().'<br>';
 
-echo $bike1->drive().'<br>';
-echo $bike1->drive().'<br>';
-echo $bike1->reverse().'<br>';
-echo $bike1->displayInfo().'<br>';
+$bike1->drive()->drive()->reverse()->displayInfo();
 
-echo $bike2->drive().'<br>';
-echo $bike2->drive().'<br>';
-echo $bike2->reverse().'<br>';
-echo $bike2->reverse().'<br>';
-echo $bike2->displayInfo().'<br>';
+$bike2->drive()->drive()->reverse()->reverse()->displayInfo();
 
+$bike3->reverse()->reverse()->reverse()->displayInfo();
 
-echo $bike3->reverse().'<br>';
-echo $bike3->reverse().'<br>';
-echo $bike3->reverse().'<br>';
-echo $bike3->displayInfo().'<br>';
 
 ?>
