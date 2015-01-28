@@ -18,9 +18,10 @@ class Bike
 		return $this;
 	}
 
-	function drive()
+	function drive($times)
 	{
-		$this->miles = $this->miles+10;
+
+		$this->miles = ($this->miles+10)*$times;
 		echo "Driving ".$this->miles ." total miles <br>";
 		return $this;
 	}
@@ -34,16 +35,17 @@ class Bike
 
 }
 
-$bike1 = new Bike('200','25mph');
-$bike2 = new Bike('500','20mph');
-$bike3 = new Bike('100','15mph');
+$bike1 = new Bike(200,'25mph');
+$bike2 = new Bike(500,'20mph');
+$bike3 = new Bike(100,'15mph');
 
+$bike1->drive(20);
 
-$bike1->drive()->drive()->reverse()->displayInfo();
+// $bike1->drive()->drive()->reverse()->displayInfo();
 
-$bike2->drive()->drive()->reverse()->reverse()->displayInfo();
+// $bike2->drive()->drive()->reverse()->reverse()->displayInfo();
 
-$bike3->reverse()->reverse()->reverse()->displayInfo();
+// $bike3->reverse()->reverse()->reverse()->displayInfo();
 
 
 ?>
